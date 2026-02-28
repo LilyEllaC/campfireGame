@@ -7,7 +7,7 @@ import level3
 
 
 #create player
-player=sprites.Player(200,200,100,100)
+player=sprites.Player(300,300,200,200)
 level=1
 
 def playGame():
