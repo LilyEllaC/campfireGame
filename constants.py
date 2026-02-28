@@ -1,6 +1,6 @@
 import pygame
 WIDTH=1600
-HEIGHT=1600
+HEIGHT=800
 SCREEN=pygame.display.set_mode((WIDTH, HEIGHT))
 
 FPS=30

@@ -1,6 +1,9 @@
 import pygame
 import utility as util
 import constants as const
+import intro
+import game
+import ending
 import asyncio
 # pylint: disable=no-member
 
@@ -11,6 +14,8 @@ running=True
 clock=pygame.time.Clock()
 pygame.display.set_caption("Campfire Game")
 
+#moving through scenes
+gameState="intro"
 
 
 async def main():
@@ -20,9 +25,12 @@ async def main():
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 running=False
-        const.SCREEN.fill(const.BLACK)
-        util.toScreen("Hi", const.FONT20, const.RED, 500,500)
         
+        #different settings
+        if gameState=="intro":
+            intro.playIntro()
+
+        #end
         pygame.display.flip()
         await asyncio.sleep(0)
         clock.tick(const.FPS)
