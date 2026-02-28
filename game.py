@@ -1,0 +1,21 @@
+import constants as const
+import utility as util
+import sprites
+import level1
+import level2
+import level3
+
+
+#create player
+player=sprites.Player(200,200,100,100)
+level=1
+
+def playGame():
+    if level==1:
+        level1.playLevel()
+    elif level==2:
+        level2.playLevel()
+    elif level==3:
+        level3.playLevel()
+    player.display()
+    
