@@ -96,25 +96,56 @@ class Player(pygame.sprite.Sprite):
                     self.x-=self.speed
 
 
-
-        
 class Hinder(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, height, isPainful):
+
+    def __init__(self, x, y, width, height, isPainful, moveDirection):
         super().__init__()
         if isPainful:
-            image=pygame.image.load("assets/playerUp.png")
+            self.image=pygame.image.load("assets/playerUp.png")
+            self.altImage=pygame.image.load("assets/playerUp.png")
         else: 
-            image=pygame.image.load("assets/playerUp.png")
+            self.image=pygame.image.load("assets/playerUp.png")
+            self.altImage=pygame.image.load("assets/playerUp.png")
         self.x = x
         self.y = y  
         self.width = width
         self.height = height
-        self.image = pygame.transform.scale(image, (width, height))
+        self.fullImage = pygame.transform.scale(self.image, (width, height))
 
         self.rect = self.image.get_rect()
         self.rect= x
         self.rect = y
         self.isPainful=isPainful
+        #moving
+        self.moveDirect=moveDirection
+        if self.moveDirect!=0:
+            self.moving=False
+            if self.moveDirect>2:
+                self.startPos=self.x
+                if self.moveDirect==3:
+                    self.endPos=self.startPos-self.width
+                if self.moveDirect==4:
+                    self.endPos=self.startPos+self.width
+            else:
+                self.startPos=self.y
+                if self.moveDirect==1:
+                    self.endPos=self.startPos-self.height
+                if self.moveDirect==2:
+                    self.endPos=self.startPos+self.height
+
+
+
+    def changeMode(self):
+        if self.fullImage==pygame.transform.scale(self.image, (self.width, self.height)):
+            self.fullImage=pygame.transform.scale(self.altImage, (self.width, self.height))
+        else:
+            self.fullImage=pygame.transform.scale(self.image, (self.width, self.height))
+
+    def move(self):
+        if self.startPos<self.endPos:
+            self.move()
 
     def display(self):
-        const.SCREEN.blit(self.image, (self.x, self.y))
+        const.SCREEN.blit(self.fullImage, (self.x, self.y))
+
+
