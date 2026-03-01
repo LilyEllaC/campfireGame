@@ -24,9 +24,9 @@ class Player(pygame.sprite.Sprite):
         self.direction=1
         self.whichImage=1
         self.counter=0
-        self.imageRight=[pygame.transform.scale(pygame.image.load("assets/playerUp1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight1.png"),(width, height))]#[pygame.transform.scale(pygame.image.load("assets/playerRight1"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]
-        self.imageLeft=[pygame.transform.scale(pygame.image.load("assets/playerUp1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight1.png"),(width, height))]#[pygame.transform.scale(pygame.image.load("assets/playerLeft1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]
-        self.imageUp=[pygame.transform.scale(pygame.image.load("assets/playerUp1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight1.png"),(width, height))]
+        self.imageRight=[pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]#, pygame.transform.scale(pygame.image.load("assets/playerRight1.png"),(width, height))]#[pygame.transform.scale(pygame.image.load("assets/playerRight1"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]
+        self.imageLeft=[pygame.transform.scale(pygame.image.load("assets/playerLeft2.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerLeft2.png"),(width, height))]#[pygame.transform.scale(pygame.image.load("assets/playerLeft1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]
+        self.imageUp=[pygame.transform.scale(pygame.image.load("assets/playerUp1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerUp2.png"),(width, height))]
         self.images=self.imageUp
 
     def move(self, event):
