@@ -74,11 +74,4 @@ def playLevel(player):
         if item.position == 30:
                 return door.collide(player, 2)
 
-#      
-# =======
-#            obstacle.display()
-#     player.display()
-#     player.updateImage()
-# >>>>>>> 7e56453eb00681dde70cc4785ccfd19f21a355b7
-#         
     
