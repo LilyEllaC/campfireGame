@@ -14,6 +14,11 @@ obstacles.add(sprites.Hinder(1300, 500, 350, size, False,0, "assets/backround fl
 obstacles.add(sprites.Hinder(1100, 500, size, 350, False,0, "assets/backround floor2 dark.png"))
 obstacles.add(sprites.Hinder(230, 600, size, 350, False,0, "assets/backround floor2 dark.png"))
 obstacles.add(sprites.Hinder(800, 50, size, 350, False,0, "assets/backround floor2 dark.png"))
+#walls
+obstacles.add(sprites.Hinder(-size, -size, size, 900, False,0, "assets/backround floor2 dark.png"))
+obstacles.add(sprites.Hinder(const.WIDTH, -size, size, 900, False,0, "assets/backround floor2 dark.png"))
+obstacles.add(sprites.Hinder(-size, -size, 1700, size, False,0, "assets/backround floor2 dark.png"))
+obstacles.add(sprites.Hinder(0, const.HEIGHT, 1700, size, False,0, "assets/backround floor2 dark.png"))
 
 #items
 key=sprites.Object(const.WIDTH-150, const.HEIGHT-100, 40, 40, "assets/key.png", 1)
