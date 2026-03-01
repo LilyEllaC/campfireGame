@@ -117,15 +117,14 @@ class Player(pygame.sprite.Sprite):
 
 
 class Hinder(pygame.sprite.Sprite):
-
-    def __init__(self, x, y, width, height, isPainful, moveDirection):
+    def __init__(self, x, y, width, height, isPainful, moveDirection, image):
         super().__init__()
         if isPainful:
             self.imageType=pygame.image.load("assets/replace.png")
             self.altImage=pygame.image.load("assets/replace.png")
         else: 
-            self.imageType=pygame.image.load("assets/door.png")
-            self.altImage=pygame.image.load("assets/door.png")
+            self.imageType=pygame.image.load(image)
+            self.altImage=pygame.image.load(image)
         self.x = x
         self.y = y  
         self.width = width

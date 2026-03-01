@@ -21,20 +21,20 @@ def create_maze():
 
     # top
     for i in range(1, 12):
-        obstacles.add(sprites.Hinder(x_Val, 0, width, height, True, 0))
+        obstacles.add(sprites.Hinder(x_Val, 0, width, height, True, 0, "n"))
         x_Val = x_Val + width
 
     # left 
     y_Val = height 
     for i in range(1, 10):
         if i not in (5, 6):
-            obstacles.add(sprites.Hinder(1, y_Val, width, height, True, 0))
+            obstacles.add(sprites.Hinder(1, y_Val, width, height, True, 0, "n"))
         y_Val = y_Val + height 
   
     # bottom
     x_Val = 1
     for i in range(1, 12):
-        obstacles.add(sprites.Hinder(x_Val, const.HEIGHT - height, width, height, True, 0))
+        obstacles.add(sprites.Hinder(x_Val, const.HEIGHT - height, width, height, True, 0, "n"))
         x_Val = x_Val + width
 
     # right 
@@ -42,7 +42,7 @@ def create_maze():
     for i in range(1, 10):
        
         if i not in (2, 3, 8):
-            obstacles.add(sprites.Hinder(const.WIDTH - width, y_Val, width, height, True, 0))
+            obstacles.add(sprites.Hinder(const.WIDTH - width, y_Val, width, height, True, 0, "n"))
         
         #door
         if i == 2:
@@ -58,7 +58,7 @@ def create_maze():
             if i == 5 and j in (4, 5): continue
             if i == 7 and j in (2, 3): continue
             
-            obstacles.add(sprites.Hinder(x_px, j * height, width, height, True, 0))
+            obstacles.add(sprites.Hinder(x_px, j * height, width, height, True, 0, "n"))
 
 # Initialize objects
 # door=sprites.Door(const.WIDTH//2-350, const.HEIGHT/2-50, 150, 300)

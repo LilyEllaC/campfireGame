@@ -5,8 +5,8 @@ import sprites
 
 obstacles = pygame.sprite.Group()
 size=50
-obstacles.add(sprites.Hinder(10,300, 350, size, False,0))
-obstacles.add(sprites.Hinder(450, 700, 350, size, False,0))
+obstacles.add(sprites.Hinder(10,300, 350, size, False,0, "assets/backround floor2 dark.png"))
+obstacles.add(sprites.Hinder(450, 700, 350, size, False,0, "assets/backround floor2 dark.png"))
 
 ghost=sprites.Ghost(const.WIDTH/2, const.HEIGHT/2, 100, 100)
 

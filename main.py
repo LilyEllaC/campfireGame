@@ -35,6 +35,8 @@ async def main():
                 if event.type==pygame.KEYUP:
                     game.player.stopMove(event)
                 if game.level==2:
+                    if event.type==pygame.KEYDOWN and event.key==pygame.K_SPACE:
+                        level2.newBackground()
                     if event.type==pygame.MOUSEBUTTONDOWN:
                         for obstacle in level2.obstacles:
                             if obstacle.rect.collidepoint(event.pos):
