@@ -50,7 +50,7 @@ def showScene():
     if image=="assets/Intro pg 2.png":
         buttonRect=pygame.Rect(const.WIDTH/2-100, 150, 855, 100)
         pygame.draw.rect(const.SCREEN, const.BLACK, buttonRect)
-        util.toScreen3("Granny: Oh sweetheart, you look terrible"," ","Sit, Sit! I'll make you some tea. I'll be right back, don't touch anything.", const.FONT25, const.BLUE, const.WIDTH/2+330, 200)
+        util.toScreen3("Granny: Oh sweetheart, you look terrible"," ","Sit, Sit! I'll make you some tea. I'll be right back, don't touch anything.", const.FONT25, const.RED, const.WIDTH/2+330, 200)
         util.toScreen("She's not wrong.", const.FONT25, const.RED, const.WIDTH/2+330, 200)
         granny.y-=0.5
         if granny.y<340:
