@@ -175,3 +175,27 @@ class Hinder(pygame.sprite.Sprite):
 
 
 
+class Door(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height):
+        super().__init__()
+        self.imageType=pygame.image.load("assets/door.png")
+        self.x = x
+        self.y = y  
+        self.width = width
+        self.height = height
+        self.image = pygame.transform.scale(self.imageType, (width, height))
+
+        self.rect = self.image.get_rect()
+        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
+        self.rect.x = x
+        self.rect.y = y
+
+    def collide(self, player, level):
+        if self.rect.colliderect(player.rect):
+            level+=1
+        return level
+    
+    def display(self):
+        const.SCREEN.blit(self.image, (self.x, self.y))
+
+

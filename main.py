@@ -40,7 +40,6 @@ async def main():
                             if obstacle.rect.collidepoint(event.pos):
                                 obstacle.move()
 
-
             if gameState=="intro":
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     if intro.continueButton.colour==intro.continueButton.colourOn:
