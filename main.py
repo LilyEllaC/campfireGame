@@ -6,6 +6,7 @@ import game
 import level2
 import level1
 import ending
+import introScene
 import sprites
 import asyncio
 
@@ -24,12 +25,18 @@ pygame.display.set_caption("Campfire Game")
 #main
 async def main():
     global running
-    gameState="intro"
+    gameState="introScene"
 
     while running:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 running=False
+            if gameState=="introScene":
+                if event.type==pygame.KEYDOWN:
+                    if introScene.granny.y<150:
+                        introScene.moveOn=True
+                        game.player.rebound=5
+                        gameState="playing"
             if gameState=="playing":
                 if event.type==pygame.KEYDOWN:
                     game.player.move(event)
@@ -51,8 +58,12 @@ async def main():
         #different settings
         if gameState=="intro":
             intro.playIntro()
+        elif gameState=="introScene":
+            gameState=introScene.showScene()
         elif gameState=="playing":
-            game.playGame()
+            gameState=game.playGame()
+        elif gameState=="ending":
+            ending.showEnd()
         #util.toScreen("FPS: "+str(clock.get_fps()), const.FONT30,const.RED, 1000, 10)
         #end
         pygame.display.flip()

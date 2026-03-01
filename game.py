@@ -21,8 +21,12 @@ def playGame():
         level2.playLevel(player)
     elif level==3:
         level=level3.playLevel(player)
-    else:
+    elif level==4:
+        player.x=const.WIDTH-100
+        player.y=const.HEIGHT//2
         return "ending"
+    else:
+        return "Loss"
     return "playing"
     
 

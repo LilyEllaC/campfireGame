@@ -79,8 +79,16 @@ def playLevel(player):
     player.updateImage()   
     key.display()
     key.collide(player) 
+
+    #text
+
+
     #if door:
     if key.y==30:
+        util.toScreen("Got it. Now get to the door", const.FONT30, const.RED, const.WIDTH//2, 40)
         return door.collide(player,1)
+    else:
+        util.toScreen2("It's a maze. Somewhere in here is a key. You need the key.", "Start walking, but don't touch the walls.", const.FONT30, const.RED, const.WIDTH//2, 40)
+
 
     return 1

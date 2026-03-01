@@ -51,6 +51,7 @@ def playLevel(player):
         blindness.display()
         if player.blindTimer>5*const.FPS:
             player.blind=False
+    
     #key
     key.display()
     key.collide(player)
@@ -58,8 +59,14 @@ def playLevel(player):
     door.display()
     if timeLeft<0:
         return 5
+    
+    #text
     if key.y==30:
+        util.toScreen("You have the key, you have two legs, please use both.", const.FONT30, const.RED, const.WIDTH//2, 40)
         return door.collide(player,3)
+    else:
+        util.toScreen2("Something is already in here with you.", "\"Yup, Run\"", const.FONT30, const.RED, const.WIDTH//2, 40)
+
     return 3
         
 

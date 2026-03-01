@@ -97,6 +97,8 @@ class Player(pygame.sprite.Sprite):
         self.actuallyMoving()
         pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
+    def resize(self):
+        self.image=pygame.transform.scale(self.image, (self.width, self.height))
     
     def collisions(self, obstacles):
         collided=pygame.sprite.spritecollide(self, obstacles, False)
@@ -304,3 +306,40 @@ class Ghost(pygame.sprite.Sprite):
 
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
+
+
+class Granny(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        image=pygame.image.load("assets/granny sprite (front).png")
+        self.x = 475
+        self.y = 300 
+        self.width = 100
+        self.height = 200
+        self.image = pygame.transform.scale(image, (self.width, self.height))
+        self.imageUp=self.image
+        self.imageRight=pygame.transform.scale(pygame.image.load("assets/granny sprite (right).png"), (self.width, self.height))
+        self.imageLeft=pygame.transform.scale(pygame.image.load("assets/granny sprite (left).png"), (self.width, self.height))
+        self.direction=1
+        self.moving=False
+        self.speed=1
+
+    def actuallyMoving(self):
+        if self.moving:
+            if self.direction==1:
+                self.image=self.imageUp
+                self.y-=self.speed
+            elif self.direction==2:
+                self.image=self.imageUp
+                self.y+=self.speed
+            elif self.direction==3:
+                self.image=self.imageLeft
+                self.x-=self.speed
+            if self.direction==4:
+                self.image=self.imageRight
+                self.x+=self.speed
+            
+    def display(self):
+        self.actuallyMoving()
+        const.SCREEN.blit(self.image, (self.x, self.y))
+        
