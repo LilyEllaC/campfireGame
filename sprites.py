@@ -17,9 +17,14 @@ class Player(pygame.sprite.Sprite):
 
 
         #moving and hitbox
-        self.rect = self.image.get_rect()
-        self.rect.x= x
-        self.rect.y = y
+        self.normRect = self.image.get_rect()
+        self.rect=self.normRect.inflate(-65,-20)
+        self.offSetX=30
+        self.offSetY=15
+        self.rect.x= x+self.offSetX
+        self.rect.y = y+self.offSetY
+
+        #collisions
         self.speed=10
         self.moving=False
         self.rebound=5
@@ -71,6 +76,8 @@ class Player(pygame.sprite.Sprite):
             self.counter=0
 
     def actuallyMoving(self):
+        self.rect.x=self.x+self.offSetX
+        self.rect.y=self.y+self.offSetY
         if self.moving:
             if self.direction==1:
                 self.y-=self.rebound
@@ -81,8 +88,7 @@ class Player(pygame.sprite.Sprite):
             if self.direction==4:
                 self.x+=self.rebound
             self.counter+=1
-            self.rect.x=self.x
-            self.rect.y=self.y
+            
             self.updateImage()
 
 
@@ -93,13 +99,12 @@ class Player(pygame.sprite.Sprite):
 
     
     def collisions(self, obstacles):
-        playerRect=self.image.get_rect()
         collided=pygame.sprite.spritecollide(self, obstacles, False)
         if collided:
             for collider in collided:
                 if collider.isPainful:
                     self.x=0
-                    self.y=const.HEIGHT/2+100
+                    self.y=const.HEIGHT/2+90
                 else:
                     if self.direction==1:
                         self.y+=self.speed
