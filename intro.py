@@ -2,6 +2,7 @@ import constants as const
 import utility as util
 import buttons
 import pygame
+import playing_music as play
 
 
 #getting a button
@@ -17,10 +18,8 @@ def playIntro():
     rect=pygame.Rect(270,380,1050,100)
     square=pygame.draw.rect(const.SCREEN, const.BLACK, rect)
     
-    util.toScreen("welcome to flipped, you were lost at the forest and stumbled upon this house", const.customFont(35), const.WHITE, const.WIDTH/2, 400)
+    util.toScreen("You got lost at the forest and stumbled upon this house.", const.customFont(35), const.WHITE, const.WIDTH/2, 400)
     util.toScreen("NOW GO INSIDE THE HOUSE", const.customFont(50), const.WHITE, const.WIDTH/2, 450)
 
 #music
-pygame.mixer.init()
-pygame.mixer.music.load("Music/intro_Music.mp3")
-pygame.mixer.music.play(-1)
+play.CurrentPage("intro")

@@ -1,5 +1,6 @@
 import constants as const
 import pygame
+import level1 as L_1
 
 
 class Button:
