@@ -1,0 +1,15 @@
+    width=5#width is size of obstacle
+    
+    #having a list of the possible x and y lines
+    xList=[]
+    yList=[]
+    for i in range(0,12):
+        xList.append(25+width*i) #creating a list of all locations every distance apart
+        yList.append(25+width*i)
+    size=50#should be equal to width
+    obstacles.add(sprites.Hinder(yList[0], xList[0], size, size, True))#first two number are the position in the list, next two are the size
+
+    #this is just how I have done it in the past.
+    #If it is confusing feel free to ask
+    #This code should go into the evel1 page
+    

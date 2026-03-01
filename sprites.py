@@ -122,16 +122,22 @@ class Hinder(pygame.sprite.Sprite):
             self.moving=False
             if self.moveDirect>2:
                 self.startPos=self.x
+                self.yAddition=0
                 if self.moveDirect==3:
                     self.endPos=self.startPos-self.width
+                    self.xAddition=-10
                 if self.moveDirect==4:
                     self.endPos=self.startPos+self.width
+                    self.xAddition=10
             else:
                 self.startPos=self.y
+                self.xAddition=0
                 if self.moveDirect==1:
                     self.endPos=self.startPos-self.height
+                    self.yAddition=-10
                 if self.moveDirect==2:
                     self.endPos=self.startPos+self.height
+                    self.xAddition=10
 
 
 
@@ -142,10 +148,16 @@ class Hinder(pygame.sprite.Sprite):
             self.fullImage=pygame.transform.scale(self.image, (self.width, self.height))
 
     def move(self):
-        if self.startPos<self.endPos:
-            self.move()
+        if (self.moveDirect==1 and self.y>self.endPos) or (self.moveDirect==2 and self.y<self.endPos) or (self.moveDirect==3 and self.x>self.endPos) or (self.moveDirect==4 and self.x<self.endPos):
+            self.moving=True
+        else:
+            self.moving=False
+            
 
     def display(self):
         const.SCREEN.blit(self.fullImage, (self.x, self.y))
+        if self.moving==True:
+            self.x+=self.xAddition
+            self.y+=self.yAddition
 
 
