@@ -10,6 +10,8 @@ continueButton=buttons.Button(200, 150, const.WIDTH/2-100, const.HEIGHT-200, con
 
 #intro
 def playIntro():
+    #music
+    play.CurrentPage("intro")
     #const.SCREEN.fill(const.BLUE)
     util.imageToScreen("assets/intro_pic.png", 0, 0,const.WIDTH, const.HEIGHT)
     continueButton.display()
@@ -21,5 +23,3 @@ def playIntro():
     util.toScreen("You got lost at the forest and stumbled upon this house.", const.customFont(35), const.WHITE, const.WIDTH/2, 400)
     util.toScreen("NOW GO INSIDE THE HOUSE", const.customFont(50), const.WHITE, const.WIDTH/2, 450)
 
-#music
-play.CurrentPage("intro")
