@@ -1,6 +1,7 @@
 import pygame
 import constants as const
 import utility as util
+import random
 
 # pylint: disable=no-member
 
@@ -14,6 +15,8 @@ class Player(pygame.sprite.Sprite):
         self.height = height
         self.image = pygame.transform.scale(image, (width, height))
 
+
+        #moving and hitbox
         self.rect = self.image.get_rect()
         self.rect.x= x
         self.rect.y = y
@@ -21,7 +24,11 @@ class Player(pygame.sprite.Sprite):
         self.moving=False
         self.rebound=5
 
+        #blindness
+        self.blind=False
+        self.blindTimer=0
 
+        #appearance
         self.direction=1
         self.whichImage=1
         self.counter=0
@@ -199,3 +206,56 @@ class Door(pygame.sprite.Sprite):
         pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
 
+class Ghost(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height):
+        super().__init__()
+        image=pygame.image.load("assets/eyeball sprite (dark).png")
+        self.x = x
+        self.y = y  
+        self.width = width
+        self.height = height
+        self.speed=2.5
+        self.image = pygame.transform.scale(image, (width, height))
+        self.xMove=False
+        self.yMove=False
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+    def move(self, player):
+        #having it not bounce like crazy when it is near correct
+        if abs(self.x-player.x)>30:
+            if self.x+self.width/2>player.x+player.width/2:
+                self.x-=self.speed
+            else:
+                self.x+=self.speed
+            self.xMove=True
+            self.rect.x=self.x
+            self.rect.y=self.y
+        else:
+            self.xMove=False
+        
+        #having it not bounce like crazy when it is near correct
+        if abs(self.y-player.y)>30:
+            if self.y+self.height/2>player.y+player.height/2:
+                self.y-=self.speed
+            else:
+                self.y+=self.speed
+            self.yMove=True
+        else:
+            self.yMove=False
+        
+        #slowing down on diagonals
+        if self.xMove and self.yMove:
+            self.speed=1.75
+        else:
+            self.speed=2.5
+
+    def collide(self, player):
+        if self.rect.colliderect(player.rect):
+            player.blind=True
+            self.x=random.randint(0, const.WIDTH)
+            self.y=random.randint(0, const.HEIGHT)
+
+    def display(self):
+        const.SCREEN.blit(self.image, (self.x, self.y))
