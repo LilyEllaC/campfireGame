@@ -14,8 +14,9 @@ level=1
 
 #play
 def playGame():
+    global level
     if level==1:
-        level1.playLevel(player)
+        level=level1.playLevel(player)
     elif level==2:
         level2.playLevel(player)
     elif level==3:

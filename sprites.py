@@ -174,7 +174,6 @@ class Hinder(pygame.sprite.Sprite):
         pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
 
-
 class Door(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         super().__init__()
@@ -197,5 +196,6 @@ class Door(pygame.sprite.Sprite):
     
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
+        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
 
