@@ -70,9 +70,15 @@ def playLevel(player):
        for obstacle in obstacles:
            player.collisions(obstacles)
            obstacle.display()
-            
+
+    collected=0
     for item in items:
-        if item.position == 30:
-                return door.collide(player, 2)
+        if item.y == 30:
+            collected+=1
+            
+    if collected==4:
+        return door.collide(player, 2)
+    else:
+        return 2
 
     
