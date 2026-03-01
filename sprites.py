@@ -101,20 +101,20 @@ class Hinder(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, isPainful, moveDirection):
         super().__init__()
         if isPainful:
-            self.image=pygame.image.load("assets/playerUp.png")
+            self.imageType=pygame.image.load("assets/playerUp.png")
             self.altImage=pygame.image.load("assets/playerUp.png")
         else: 
-            self.image=pygame.image.load("assets/playerUp.png")
+            self.imageType=pygame.image.load("assets/playerUp.png")
             self.altImage=pygame.image.load("assets/playerUp.png")
         self.x = x
         self.y = y  
         self.width = width
         self.height = height
-        self.fullImage = pygame.transform.scale(self.image, (width, height))
+        self.image = pygame.transform.scale(self.imageType, (width, height))
 
         self.rect = self.image.get_rect()
-        self.rect= x
-        self.rect = y
+        self.rect.x= x
+        self.rect.y = y
         self.isPainful=isPainful
         #moving
         self.moveDirect=moveDirection
@@ -142,10 +142,10 @@ class Hinder(pygame.sprite.Sprite):
 
 
     def changeMode(self):
-        if self.fullImage==pygame.transform.scale(self.image, (self.width, self.height)):
-            self.fullImage=pygame.transform.scale(self.altImage, (self.width, self.height))
+        if self.image==pygame.transform.scale(self.imageType, (self.width, self.height)):
+            self.image=pygame.transform.scale(self.altImage, (self.width, self.height))
         else:
-            self.fullImage=pygame.transform.scale(self.image, (self.width, self.height))
+            self.image=pygame.transform.scale(self.imageType, (self.width, self.height))
 
     def move(self):
         if (self.moveDirect==1 and self.y>self.endPos) or (self.moveDirect==2 and self.y<self.endPos) or (self.moveDirect==3 and self.x>self.endPos) or (self.moveDirect==4 and self.x<self.endPos):
@@ -155,7 +155,7 @@ class Hinder(pygame.sprite.Sprite):
             
 
     def display(self):
-        const.SCREEN.blit(self.fullImage, (self.x, self.y))
+        const.SCREEN.blit(self.image, (self.x, self.y))
         if self.moving==True:
             self.x+=self.xAddition
             self.y+=self.yAddition
