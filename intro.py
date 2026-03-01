@@ -8,7 +8,7 @@ continueButton=buttons.Button(200, 150, const.WIDTH/2-100, const.HEIGHT-200, con
 #intro
 def playIntro():
     const.SCREEN.fill(const.BLUE)
-    util.imageToScreen("assets\intro.png", const.WIDTH, const.HEIGHT, 500, 500)
+    util.imageToScreen("assets\intro.png", const.WIDTH, const.HEIGHT, const.WIDTH, const.HEIGHT)
     util.toScreen("welcome to Flipped the other world", const.FONT20, const.RED, const.WIDTH/2, 500)
     util.toScreen("Flipped", const.FONT200, const.YELLOW, const.WIDTH/2, 100)
     continueButton.display()
