@@ -77,9 +77,18 @@ class Player(pygame.sprite.Sprite):
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
         self.actuallyMoving()
+    
+    def collisions(self, obstacle):
+        if pygame.Rect.colliderect(obstacle.getRect(), self.getRect()):
+            if obstacle.isPainful:
+                self.x=0
+                self.y=0
+
+
+
         
 class Hinder(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, width, height, isPainful):
         super().__init__()
         image=pygame.image.load("")
         self.x = x
@@ -91,6 +100,7 @@ class Hinder(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect= x
         self.rect = y
+        self.isPainful=isPainful
 
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
