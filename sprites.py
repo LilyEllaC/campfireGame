@@ -32,7 +32,7 @@ class Player(pygame.sprite.Sprite):
         
 
     def display(self):
-        const.screen.blit(self.image, (self.x, self.y))
+        const.SCREEN.blit(self.image, (self.x, self.y))
         
 class Hinder(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
@@ -49,4 +49,4 @@ class Hinder(pygame.sprite.Sprite):
         self.rect = y
 
     def display(self):
-        const.screen.blit(self.image, (self.x, self.y))
+        const.SCREEN.blit(self.image, (self.x, self.y))

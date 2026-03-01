@@ -16,12 +16,12 @@ clock=pygame.time.Clock()
 pygame.display.set_caption("Campfire Game")
 
 #moving through scenes
-gameState="intro"
 
 
 #main
 async def main():
     global running
+    gameState="intro"
 
     while running:
         for event in pygame.event.get():
@@ -30,10 +30,17 @@ async def main():
             if event.type==pygame.KEYDOWN:
                 if gameState=="playing":
                     game.player.move()
+
+            if gameState=="intro":
+                if event.type==pygame.MOUSEBUTTONDOWN:
+                    if intro.continueButton.colour==intro.continueButton.colourOn:
+                        gameState="playing"
         
         #different settings
         if gameState=="intro":
             intro.playIntro()
+        elif gameState=="playing":
+            game.playGame()
 
         #end
         pygame.display.flip()

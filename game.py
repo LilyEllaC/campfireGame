@@ -13,6 +13,7 @@ level=1
 def playGame():
     if level==1:
         level1.playLevel()
+        print("hi")
     elif level==2:
         level2.playLevel()
     elif level==3:
