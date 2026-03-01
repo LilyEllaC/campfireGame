@@ -8,10 +8,13 @@ continueButton=buttons.Button(200, 150, const.WIDTH/2-100, const.HEIGHT-200, con
 
 #intro
 def playIntro():
-    print("in the intro loop")
-    const.SCREEN.fill(const.BLUE)
-    util.toScreen("welcome to fliped", const.FONT20, const.RED, const.WIDTH/2, 500)
-    util.toScreen("Title", const.FONT200, const.YELLOW, const.WIDTH/2, 100)
-    util.imageToScreen("assets/intro_pic.png", const.WIDTH//2 - 250, const.HEIGHT//2 - 250, 500, 500)
+    #const.SCREEN.fill(const.BLUE)
+    util.imageToScreen("assets/intro_pic.png", 0, 0,const.WIDTH, const.HEIGHT)
     continueButton.display()
     continueButton.checkMouse()
+    util.toScreen("FLIPPED", const.FONT200, const.YELLOW, const.WIDTH/2, 100)
+    rect=pygame.Rect(270,380,1050,100)
+    square=pygame.draw.rect(const.SCREEN, const.BLACK, rect)
+    
+    util.toScreen("welcome to flipped, you were lost at the foest and stumbled upon this.", const.FONT30, const.WHITE, const.WIDTH/2, 400)
+    util.toScreen("NOW GO IN THE HOUSE", const.FONT30, const.WHITE, const.WIDTH/2, 450)

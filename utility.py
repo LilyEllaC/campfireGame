@@ -14,7 +14,6 @@ def toScreen3(words1, words2, words3, font, colour, x, y):
     toScreen(words1, font, colour, x, y - font.get_height())
     toScreen(words2, font, colour, x, y)
     toScreen(words3, font, colour, x, y + font.get_height())
-
 #images
 def imageToScreen(imageName, x, y, width, height):
     image = pygame.image.load(imageName)
