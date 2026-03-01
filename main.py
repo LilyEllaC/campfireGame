@@ -27,7 +27,7 @@ async def main():
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 running=False
-            if event.type==pygame.BUTTONDOWN:
+            if event.type==pygame.KEYDOWN:
                 if gameState=="playing":
                     game.player.move()
         
