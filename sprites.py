@@ -19,17 +19,15 @@ class Player(pygame.sprite.Sprite):
         self.rect = y
 
 
-    def move(self):
-        if self.x == pygame.K_LEFT:
-            self.x +=10
-        elif self.x == pygame.K_RIGHT:
+    def move(self, event):
+        if event.key == pygame.K_LEFT:
             self.x -=10
-        if self.y == pygame.K_UP:
-            self.y +=10
-        elif self.y == pygame.K_DOWN:
+        elif event.key == pygame.K_RIGHT:
+            self.x +=10
+        if event.key == pygame.K_UP:
             self.y -=10
-
-        
+        elif event.key == pygame.K_DOWN:
+            self.y +=10
 
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
