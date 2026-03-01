@@ -3,6 +3,7 @@ import utility as util
 import buttons
 import pygame
 
+
 #getting a button
 continueButton=buttons.Button(200, 150, const.WIDTH/2-100, const.HEIGHT-200, const.RED, const.LIGHT_RED)
 
@@ -18,3 +19,8 @@ def playIntro():
     
     util.toScreen("welcome to flipped, you were lost at the forest and stumbled upon this house", const.customFont(35), const.WHITE, const.WIDTH/2, 400)
     util.toScreen("NOW GO INSIDE THE HOUSE", const.customFont(50), const.WHITE, const.WIDTH/2, 450)
+
+#music
+pygame.mixer.init()
+pygame.mixer.music.load("Music/intro_Music.mp3")
+pygame.mixer.music.play(-1)

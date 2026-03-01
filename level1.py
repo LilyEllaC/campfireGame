@@ -6,7 +6,7 @@ import sprites
 
 #creating obstacles
 obstacles=pygame.sprite.Group()
-obstacles.add(sprites.Hinder(200, 300, 50, 50, True))
+obstacles.add(sprites.Hinder(200, 300, 50, 50, True,0))
 
 
 

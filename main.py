@@ -6,6 +6,7 @@ import game
 import ending
 import sprites
 import asyncio
+
 # pylint: disable=no-member
 
 pygame.init()
