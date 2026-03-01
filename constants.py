@@ -1,8 +1,9 @@
 import pygame
+
+
 WIDTH=1600
 HEIGHT=800
 SCREEN=pygame.display.set_mode((WIDTH, HEIGHT))
-
 FPS=30
 FPS_SCALING=30/FPS
 
@@ -34,6 +35,7 @@ LIGHT_RED = (210, 76, 76)
 
 
 # fonts/font sizes
+font_path = "Fonts/Jersey20-Regular.ttf"
 pygame.font.init()
 FONT_TYPE = "freesansbold.ttf"
 FONT10 = pygame.font.Font(FONT_TYPE, 10)
@@ -46,3 +48,8 @@ FONT37 = pygame.font.Font(FONT_TYPE, 37)
 FONT40 = pygame.font.Font(FONT_TYPE, 40)
 FONT60 = pygame.font.Font(FONT_TYPE, 60)
 FONT200 = pygame.font.Font(FONT_TYPE, 200)
+
+def customFont(font_size):
+    custom_font1 = pygame.font.Font(font_path,font_size)
+    return custom_font1
+
