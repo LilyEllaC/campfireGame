@@ -75,6 +75,7 @@ def playLevel(player):
     
     player.collisions(obstacles)
 
-        
+    player.display()
+    player.updateImage()    
     #if door:
     return door.collide(player, 1)

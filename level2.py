@@ -58,6 +58,7 @@ def playLevel(player):
     if background =="assets/backround floor2 dark.png":
        for obstacle in obstacles:
            obstacle.display()
-     
+    player.display()
+    player.updateImage()
         
     
