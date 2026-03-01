@@ -5,13 +5,19 @@ Find a way to leave!
 
 Controls: 
 Arrows - move forward,back,up, and down
+
 Spacebar- Interact
 
 Obstacles:
+
 Room 1 - Maze
-Navigate through the maze. Find the key, find the door.
+ Navigate through the maze. Find the key, find the door.
+ 
 Room 2 - Dark Room
-Collect all the items in the dark while avoiding obstacles. One of the items is a tomato.
+ Collect all the items in the dark while avoiding obstacles. One of the items is a tomato.
+ 
 Room 3 - Ghost
-There's a ghost, and it's chasing you. Grab the key and go.
+ There's a ghost, and it's chasing you. Grab the key and go.
+ 
 GOOD LUCK
+
