@@ -15,18 +15,29 @@ obstacles.add(sprites.Hinder(1100, 500, size, 350, False,0, "assets/backround fl
 obstacles.add(sprites.Hinder(230, 600, size, 350, False,0, "assets/backround floor2 dark.png"))
 obstacles.add(sprites.Hinder(800, 50, size, 350, False,0, "assets/backround floor2 dark.png"))
 
+#items
 key=sprites.Object(const.WIDTH-150, const.HEIGHT-100, 40, 40, "assets/key.png", 1)
 door = sprites.Door(const.WIDTH - size, const.HEIGHT // 2-200, 150, 300)
-
 ghost=sprites.Ghost(const.WIDTH/2, const.HEIGHT/2, 100, 100)
 
+#clock
+timeLeft=90
+
+#playing
 def playLevel(player):
+    global timeLeft
     util.imageToScreen("assets/backround floor2 dark.png", 0, 0,const.WIDTH, const.HEIGHT)
     util.toScreen("Level 3", const.FONT25, const.YELLOW, const.WIDTH-100, 30)
 
+    #clock
+    timeLeft-=1/const.FPS
+    util.toScreen("Seconds Left: "+str(round(timeLeft)), const.FONT25, const.RED, const.WIDTH-200, 30)
+
+    #obstacles
     for obstacle in obstacles:
         obstacle.display()
     player.collisions(obstacles)
+
     #ghost
     ghost.move(player)
     ghost.collide(player)
@@ -46,6 +57,8 @@ def playLevel(player):
     key.collide(player)
     #door
     door.display()
+    if timeLeft<0:
+        return 5
     if key.y==30:
         return door.collide(player,3)
     return 3
