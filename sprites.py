@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = y
         self.speed=10
         self.moving=False
+        self.rebound=5
 
 
         self.direction=1
@@ -46,6 +47,7 @@ class Player(pygame.sprite.Sprite):
             self.moving=True
             self.direction=2
             self.images=self.imageUp
+        self.counter=15
         
 
     def stopMove(self, event):
@@ -64,13 +66,13 @@ class Player(pygame.sprite.Sprite):
     def actuallyMoving(self):
         if self.moving:
             if self.direction==1:
-                self.y-=self.speed
+                self.y-=self.rebound
             elif self.direction==2:
-                self.y+=self.speed
+                self.y+=self.rebound
             elif self.direction==3:
-                self.x-=self.speed
+                self.x-=self.rebound
             if self.direction==4:
-                self.x+=self.speed
+                self.x+=self.rebound
             self.counter+=1
 
 
@@ -83,6 +85,15 @@ class Player(pygame.sprite.Sprite):
             if obstacle.isPainful:
                 self.x=0
                 self.y=0
+            else:
+                if self.direction==1:
+                    self.y+=self.speed
+                elif self.direction==2:
+                    self.y-=self.speed
+                elif self.direction==3:
+                    self.x+=self.speed
+                if self.direction==4:
+                    self.x-=self.speed
 
 
 
@@ -90,7 +101,10 @@ class Player(pygame.sprite.Sprite):
 class Hinder(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, isPainful):
         super().__init__()
-        image=pygame.image.load("")
+        if isPainful:
+            image=pygame.image.load("assets/playerUp.png")
+        else: 
+            image=pygame.image.load("assets/playerUp.png")
         self.x = x
         self.y = y  
         self.width = width
