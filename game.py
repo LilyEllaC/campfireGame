@@ -19,4 +19,5 @@ def playGame():
     elif level==3:
         level3.playLevel()
     player.display()
+    player.updateImage()
     

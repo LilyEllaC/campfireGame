@@ -30,6 +30,9 @@ async def main():
             if event.type==pygame.KEYDOWN:
                 if gameState=="playing":
                     game.player.move(event)
+            if event.type==pygame.KEYUP:
+                if gameState=="playing":
+                    game.player.stopMove(event)
 
             if gameState=="intro":
                 if event.type==pygame.MOUSEBUTTONDOWN:
