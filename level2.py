@@ -61,6 +61,7 @@ def playLevel(player):
    
         
     if background =="assets/backround floor2 dark.png":
+        player.display()
         for item in items:
             item.display()
             item.collide(player)
