@@ -25,9 +25,10 @@ class Player(pygame.sprite.Sprite):
         self.direction=1
         self.whichImage=1
         self.counter=0
-        self.imageRight=[pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]#, pygame.transform.scale(pygame.image.load("assets/playerRight1.png"),(width, height))]#[pygame.transform.scale(pygame.image.load("assets/playerRight1"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]
-        self.imageLeft=[pygame.transform.scale(pygame.image.load("assets/playerLeft2.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerLeft2.png"),(width, height))]#[pygame.transform.scale(pygame.image.load("assets/playerLeft1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]
+        self.imageRight=[pygame.transform.scale(pygame.image.load("assets/playerRight1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]#, pygame.transform.scale(pygame.image.load("assets/playerRight1.png"),(width, height))]#[pygame.transform.scale(pygame.image.load("assets/playerRight1"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]
+        self.imageLeft=[pygame.transform.scale(pygame.image.load("assets/playerLeft1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerLeft2.png"),(width, height))]#[pygame.transform.scale(pygame.image.load("assets/playerLeft1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerRight2.png"),(width, height))]
         self.imageUp=[pygame.transform.scale(pygame.image.load("assets/playerUp.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerUp.png"),(width, height))]
+        self.imageDown=[pygame.transform.scale(pygame.image.load("assets/playerDown1.png"),(width, height)), pygame.transform.scale(pygame.image.load("assets/playerDown2.png"),(width, height))]
         self.images=self.imageUp
 
     def move(self, event):
@@ -46,7 +47,7 @@ class Player(pygame.sprite.Sprite):
         elif event.key == pygame.K_DOWN:
             self.moving=True
             self.direction=2
-            self.images=self.imageUp
+            self.images=self.imageDown
         self.counter=15
         
     def stopMove(self, event):
@@ -54,7 +55,7 @@ class Player(pygame.sprite.Sprite):
             self.moving=False
 
     def updateImage(self):
-        if self.counter==const.FPS/2:
+        if self.counter>const.FPS/4:
             self.image=self.images[self.whichImage]
             if self.whichImage==1: 
                 self.whichImage=0
@@ -75,6 +76,7 @@ class Player(pygame.sprite.Sprite):
             self.counter+=1
             self.rect.x=self.x
             self.rect.y=self.y
+            self.updateImage()
 
 
     def display(self):
@@ -85,19 +87,21 @@ class Player(pygame.sprite.Sprite):
     
     def collisions(self, obstacles):
         playerRect=self.image.get_rect()
-        if pygame.sprite.spritecollide(self, obstacles, False):
-            #if obstacle.isPainful:
-                #self.x=0
-                #self.y=0
-            if True:
-                if self.direction==1:
-                    self.y+=self.speed
-                elif self.direction==2:
-                    self.y-=self.speed
-                elif self.direction==3:
-                    self.x+=self.speed
-                if self.direction==4:
-                    self.x-=self.speed
+        collided=pygame.sprite.spritecollide(self, obstacles, False)
+        if collided:
+            for collider in collided:
+                if collider.isPainful:
+                    self.x=0
+                    self.y=0
+                else:
+                    if self.direction==1:
+                        self.y+=self.speed
+                    elif self.direction==2:
+                        self.y-=self.speed
+                    elif self.direction==3:
+                        self.x+=self.speed
+                    if self.direction==4:
+                        self.x-=self.speed
 
 
 class Hinder(pygame.sprite.Sprite):
@@ -156,7 +160,7 @@ class Hinder(pygame.sprite.Sprite):
             self.moving=True
         else:
             self.moving=False
-            
+
 
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
@@ -165,6 +169,8 @@ class Hinder(pygame.sprite.Sprite):
             self.y+=self.yAddition
             self.rect.x = self.x
             self.rect.y = self.y
+            if not (self.moveDirect==1 and self.y>self.endPos) or (self.moveDirect==2 and self.y<self.endPos) or (self.moveDirect==3 and self.x>self.endPos) or (self.moveDirect==4 and self.x<self.endPos):
+                self.moving=False
         pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
 

@@ -3,6 +3,7 @@ import utility as util
 import constants as const
 import intro
 import game
+import level2
 import ending
 import sprites
 import asyncio
@@ -28,12 +29,17 @@ async def main():
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 running=False
-            if event.type==pygame.KEYDOWN:
-                if gameState=="playing":
+            if gameState=="playing":
+                if event.type==pygame.KEYDOWN:
                     game.player.move(event)
-            if event.type==pygame.KEYUP:
-                if gameState=="playing":
+                if event.type==pygame.KEYUP:
                     game.player.stopMove(event)
+                if game.level==2:
+                    if event.type==pygame.MOUSEBUTTONDOWN:
+                        for obstacle in level2.obstacles:
+                            if obstacle.rect.collidepoint(event.pos):
+                                obstacle.move()
+
 
             if gameState=="intro":
                 if event.type==pygame.MOUSEBUTTONDOWN:
