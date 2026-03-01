@@ -211,6 +211,8 @@ class Door(pygame.sprite.Sprite):
     def collide(self, player, level):
         if self.rect.colliderect(player.rect):
             level+=1
+            player.x=20
+            player.y=const.HEIGHT/2
         return level
     
     def display(self):
@@ -245,7 +247,10 @@ class Object(pygame.sprite.Sprite):
 class Ghost(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         super().__init__()
-        image=pygame.image.load("assets/eyeball sprite (dark).png")
+        image=pygame.image.load("assets/ghost sprite (front).png")
+        self.imageUp=pygame.transform.scale(pygame.image.load("assets/ghost sprite (front).png"), (width, height))
+        self.imageLeft=pygame.transform.scale(pygame.image.load("assets/ghost sprite (left).png"), (width, height))
+        self.imageRight=pygame.transform.scale(pygame.image.load("assets/ghost sprite (right).png"), (width, height))
         self.x = x
         self.y = y  
         self.width = width
@@ -260,17 +265,20 @@ class Ghost(pygame.sprite.Sprite):
 
     def move(self, player):
         #having it not bounce like crazy when it is near correct
-        if abs(self.x-player.x)>30:
+        if abs(self.x-player.x)>20:
             if self.x+self.width/2>player.x+player.width/2:
+                self.image=self.imageLeft
                 self.x-=self.speed
             else:
                 self.x+=self.speed
+                self.image=self.imageRight
             self.xMove=True
             self.rect.x=self.x
             self.rect.y=self.y
         else:
             self.xMove=False
-        
+            self.image=self.imageUp
+
         #having it not bounce like crazy when it is near correct
         if abs(self.y-player.y)>30:
             if self.y+self.height/2>player.y+player.height/2:
@@ -290,6 +298,7 @@ class Ghost(pygame.sprite.Sprite):
     def collide(self, player):
         if self.rect.colliderect(player.rect):
             player.blind=True
+            player.blindTimer=0
             self.x=random.randint(0, const.WIDTH)
             self.y=random.randint(0, const.HEIGHT)
 

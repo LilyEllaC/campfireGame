@@ -67,6 +67,7 @@ def playLevel(player):
             
     if background =="assets/backround floor2 dark.png":
        for obstacle in obstacles:
+<<<<<<< HEAD
             player.collisions(obstacles)
             obstacle.display()
             
@@ -75,5 +76,10 @@ def playLevel(player):
                 return door.collide(player, 2)
 
      
+=======
+           obstacle.display()
+    player.display()
+    player.updateImage()
+>>>>>>> 7e56453eb00681dde70cc4785ccfd19f21a355b7
         
     

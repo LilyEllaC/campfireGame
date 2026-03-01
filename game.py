@@ -20,8 +20,10 @@ def playGame():
     elif level==2:
         level2.playLevel(player)
     elif level==3:
-        level3.playLevel(player)
-    player.display()
-    player.updateImage()
+        level=level3.playLevel(player)
+    else:
+        return "ending"
+    return "playing"
+    
 
     
