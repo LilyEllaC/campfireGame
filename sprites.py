@@ -15,8 +15,8 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(image, (width, height))
 
         self.rect = self.image.get_rect()
-        self.rect= x
-        self.rect = y
+        self.rect.x= x
+        self.rect.y = y
         self.speed=10
         self.moving=False
         self.rebound=5
@@ -49,7 +49,6 @@ class Player(pygame.sprite.Sprite):
             self.images=self.imageUp
         self.counter=15
         
-
     def stopMove(self, event):
         if event.key==pygame.K_LEFT or event.key==pygame.K_RIGHT or event.key==pygame.K_UP or event.key==pygame.K_DOWN:
             self.moving=False
@@ -74,18 +73,23 @@ class Player(pygame.sprite.Sprite):
             if self.direction==4:
                 self.x+=self.rebound
             self.counter+=1
+            self.rect.x=self.x
+            self.rect.y=self.y
 
 
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
         self.actuallyMoving()
+        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
+
     
-    def collisions(self, obstacle):
-        if pygame.Rect.colliderect(obstacle.getRect(), self.getRect()):
-            if obstacle.isPainful:
-                self.x=0
-                self.y=0
-            else:
+    def collisions(self, obstacles):
+        playerRect=self.image.get_rect()
+        if pygame.sprite.spritecollide(self, obstacles, False):
+            #if obstacle.isPainful:
+                #self.x=0
+                #self.y=0
+            if True:
                 if self.direction==1:
                     self.y+=self.speed
                 elif self.direction==2:
@@ -101,11 +105,11 @@ class Hinder(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, isPainful, moveDirection):
         super().__init__()
         if isPainful:
-            self.imageType=pygame.image.load("assets/playerUp.png")
-            self.altImage=pygame.image.load("assets/playerUp.png")
+            self.imageType=pygame.image.load("assets/spikes.png")
+            self.altImage=pygame.image.load("assets/spikes.png")
         else: 
-            self.imageType=pygame.image.load("assets/playerUp.png")
-            self.altImage=pygame.image.load("assets/playerUp.png")
+            self.imageType=pygame.image.load("assets/door.png")
+            self.altImage=pygame.image.load("assets/door.png")
         self.x = x
         self.y = y  
         self.width = width
@@ -113,13 +117,14 @@ class Hinder(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.imageType, (width, height))
 
         self.rect = self.image.get_rect()
-        self.rect.x= x
+        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
+        self.rect.x = x
         self.rect.y = y
         self.isPainful=isPainful
         #moving
         self.moveDirect=moveDirection
+        self.moving=False
         if self.moveDirect!=0:
-            self.moving=False
             if self.moveDirect>2:
                 self.startPos=self.x
                 self.yAddition=0
@@ -140,7 +145,6 @@ class Hinder(pygame.sprite.Sprite):
                     self.xAddition=10
 
 
-
     def changeMode(self):
         if self.image==pygame.transform.scale(self.imageType, (self.width, self.height)):
             self.image=pygame.transform.scale(self.altImage, (self.width, self.height))
@@ -159,5 +163,9 @@ class Hinder(pygame.sprite.Sprite):
         if self.moving==True:
             self.x+=self.xAddition
             self.y+=self.yAddition
+            self.rect.x = self.x
+            self.rect.y = self.y
+        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
+
 
 

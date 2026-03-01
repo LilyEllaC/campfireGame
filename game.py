@@ -15,11 +15,12 @@ level=1
 #play
 def playGame():
     if level==1:
-        level1.playLevel()
+        level1.playLevel(player)
     elif level==2:
         level2.playLevel()
     elif level==3:
         level3.playLevel()
     player.display()
     player.updateImage()
+
     
