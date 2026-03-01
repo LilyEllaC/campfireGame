@@ -9,7 +9,7 @@ import pygame
 
 #create player
 player=sprites.Player(30,const.HEIGHT/2,200,200)
-level=1
+level=3
 
 
 #play
@@ -20,7 +20,7 @@ def playGame():
     elif level==2:
         level2.playLevel(player)
     elif level==3:
-        level3.playLevel()
+        level3.playLevel(player)
     player.display()
     player.updateImage()
 
