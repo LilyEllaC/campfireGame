@@ -15,6 +15,7 @@ def val(x,y,w,h):
 
 # creating obstacles
 def create_maze():
+    global door
     obstacles.empty()
     x_Val = 1
 
@@ -43,8 +44,9 @@ def create_maze():
         if i not in (2, 3, 8):
             obstacles.add(sprites.Hinder(const.WIDTH - width, y_Val, width, height, True, 0))
         
-        if i == 8:
-            door=val(const.WIDTH - width, y_Val, width, height)
+        #door
+        if i == 2:
+            door=val(const.WIDTH - width, y_Val, width, height*2)
 
         y_Val = y_Val + height
         
@@ -65,12 +67,13 @@ create_maze()
 
 def playLevel(player):
     util.imageToScreen("assets/Backround floor2.jpg", 0, 0, const.WIDTH, const.HEIGHT)
-    
+    global door
     for obstacle in obstacles:
         obstacle.display()
     #if door is not None:
     door.display()
     
+    print(door.x, door.y)
     player.collisions(obstacles)
 
         

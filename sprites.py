@@ -99,7 +99,7 @@ class Player(pygame.sprite.Sprite):
             for collider in collided:
                 if collider.isPainful:
                     self.x=0
-                    self.y=const.HEIGHT/2
+                    self.y=const.HEIGHT/2+100
                 else:
                     if self.direction==1:
                         self.y+=self.speed
