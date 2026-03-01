@@ -95,7 +95,6 @@ class Player(pygame.sprite.Sprite):
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
         self.actuallyMoving()
-        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
     def resize(self):
         self.image=pygame.transform.scale(self.image, (self.width, self.height))
@@ -192,7 +191,6 @@ class Hinder(pygame.sprite.Sprite):
             self.rect.y = self.y
             if not (self.moveDirect==1 and self.y>self.endPos) or (self.moveDirect==2 and self.y<self.endPos) or (self.moveDirect==3 and self.x>self.endPos) or (self.moveDirect==4 and self.x<self.endPos):
                 self.moving=False
-        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
 
 class Door(pygame.sprite.Sprite):
