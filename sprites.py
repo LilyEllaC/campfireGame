@@ -211,6 +211,32 @@ class Door(pygame.sprite.Sprite):
         pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
 
+class Object(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height, image, position):
+        super().__init__()
+        self.imageType=pygame.image.load(image)
+        self.x = x
+        self.y = y  
+        self.width = width
+        self.height = height
+        self.image = pygame.transform.scale(self.imageType, (width, height))
+        self.position=position
+
+        self.rect = self.image.get_rect()
+        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
+        self.rect.x = x
+        self.rect.y = y
+
+    def collide(self, player):
+        if self.rect.colliderect(player.rect):
+            print("Gotten")
+            self.x=30*self.position
+            self.y=30
+    
+    def display(self):
+        const.SCREEN.blit(self.image, (self.x, self.y))
+        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
+
 class Ghost(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         super().__init__()
