@@ -236,7 +236,6 @@ class Object(pygame.sprite.Sprite):
 
     def collide(self, player):
         if self.rect.colliderect(player.rect):
-            print("Gotten")
             self.x=30*self.position
             self.y=30
     

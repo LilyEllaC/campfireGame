@@ -9,7 +9,7 @@ import pygame
 
 #create player
 player=sprites.Player(30,const.HEIGHT/2,210,210)
-level=2
+level=3
 
 
 #play
