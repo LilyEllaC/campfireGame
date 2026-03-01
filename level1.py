@@ -73,7 +73,6 @@ def playLevel(player):
     #if door is not None:
     door.display()
     
-    print(door.x, door.y)
     player.collisions(obstacles)
 
         
