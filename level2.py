@@ -31,25 +31,33 @@ def createObjects():
 
     door = sprites.Door(const.WIDTH - size, const.HEIGHT // 2, size, size*2)
 
-background="assets/Backround floor2.jpg"
+background="assets/newLevel2Background1.png"
 #new background
 def newBackground():
     global background
+    
     background="assets/backround floor2 dark.png"
     for obstacle in obstacles:
         obstacle.changeMode()
-
+        
 createObjects()
+
 #level
 def playLevel(player):
     global background
     util.imageToScreen(background, 0, 0,const.WIDTH, const.HEIGHT)
 #     util.imageToScreen("assets\Backround floor2.jpg",)
-    for item in items:
-        item.display()
-        item.collide(player)
+    
+   
+        
+    if background =="assets/backround floor2 dark.png":
+        for item in items:
+            item.display()
+            item.collide(player)
 
-    for obstacle in obstacles:
-        obstacle.display()
+    if background =="assets/backround floor2 dark.png":
+       for obstacle in obstacles:
+           obstacle.display()
+     
         
     
