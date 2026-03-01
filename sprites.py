@@ -157,7 +157,7 @@ class Hinder(pygame.sprite.Sprite):
                     self.yAddition=-10
                 if self.moveDirect==2:
                     self.endPos=self.startPos+self.height
-                    self.xAddition=10
+                    self.yAddition=10
 
 
     def changeMode(self):
