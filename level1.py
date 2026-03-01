@@ -4,11 +4,22 @@ import pygame
 import sprites
 import playing_music as play
 
-
+obstacles = pygame.sprite.Group()
+size = 50
 #creating obstacles
-obstacles=pygame.sprite.Group()
-obstacles.add(sprites.Hinder(200, 300, 150, 150, True,0))
-obstacles.add(sprites.Hinder(400, 300, 150, 150, True,0))
+def create_maze():
+ #top
+
+    obstacles.add(sprites.Hinder(0,0, 350, size, True,0))
+    obstacles.add(sprites.Hinder(450, 0, 350, size, True,0))
+
+    #bootom
+    obstacles.add(sprites.Hinder(0, const.HEIGHT - W, 350, W, True, 0))
+    obstacles.add(sprites.Hinder(450, const.HEIGHT - W, 350, W, True, 0))
+
+    #side
+    obstacles.add(sprites.Hinder(0, 0,w,const.HEIGHT,True, 0))
+    obstacles.add(sprites.Hinder(const.WIDTH - W, 0, W, const.HEIGHT, True, 0))
 
 
 

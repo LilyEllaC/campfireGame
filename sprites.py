@@ -105,8 +105,8 @@ class Hinder(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, isPainful, moveDirection):
         super().__init__()
         if isPainful:
-            self.imageType=pygame.image.load("assets/spikes.png")
-            self.altImage=pygame.image.load("assets/spikes.png")
+            self.imageType=pygame.image.load("assets/obsticle_sprite.png")
+            self.altImage=pygame.image.load("assets/obsticle_sprite.png")
         else: 
             self.imageType=pygame.image.load("assets/door.png")
             self.altImage=pygame.image.load("assets/door.png")
