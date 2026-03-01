@@ -85,10 +85,14 @@ def playLevel(player):
 
     #if door:
     if key.y==30:
-        util.toScreen("Got it. Now get to the door", const.FONT30, const.RED, const.WIDTH//2, 40)
+        rect=pygame.Rect(const.WIDTH//2,20,0,0)
+        square=pygame.draw.rect(const.SCREEN, const.BLACK, rect)
+        util.toScreen("Got it. Now get to the door", const.FONT30, const.WHITE, const.WIDTH//2, 20)
         return door.collide(player,1)
     else:
-        util.toScreen2("It's a maze. Somewhere in here is a key. You need the key.", "Start walking, but don't touch the walls.", const.FONT30, const.RED, const.WIDTH//2, 40)
+        rect=pygame.Rect(270,380,1050,100)
+        square=pygame.draw.rect(const.SCREEN, const.BLACK, rect)
+        util.toScreen2("It's a maze. Somewhere in here is a key. You need the key.", "Start walking, but don't touch the walls.", const.FONT30, const.WHITE, const.WIDTH//2, 40)
 
 
     return 1
