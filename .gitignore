@@ -1,2 +1,10 @@
 .venv/lib64
 .venv
+__pycache__/buttons.cpython-312.pyc
+__pycache__/constants.cpython-312.pyc
+__pycache__/game.cpython-312.pyc
+__pycache__/intro.cpython-312.pyc
+__pycache__/level1.cpython-312.pyc
+__pycache__/level2.cpython-312.pyc
+__pycache__/playing_music.cpython-312.pyc
+__pycache__/utility.cpython-312.pyc
