@@ -25,7 +25,8 @@ pygame.display.set_caption("Campfire Game")
 #main
 async def main():
     global running
-    gameState="introScene"
+    gameState="intro"
+#     gameState="introScene"
 
     while running:
         for event in pygame.event.get():
@@ -53,7 +54,7 @@ async def main():
             if gameState=="intro":
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     if intro.continueButton.colour==intro.continueButton.colourOn:
-                        gameState="playing"
+                        gameState="introScene"
         
         #different settings
         if gameState=="intro":

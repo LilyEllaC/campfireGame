@@ -20,6 +20,6 @@ def playIntro():
     rect=pygame.Rect(270,380,1050,100)
     square=pygame.draw.rect(const.SCREEN, const.BLACK, rect)
     
-    util.toScreen("You got lost at the forest and stumbled upon this house.", const.customFont(35), const.WHITE, const.WIDTH/2, 400)
-    util.toScreen("NOW GO INSIDE THE HOUSE", const.customFont(50), const.WHITE, const.WIDTH/2, 450)
+    util.toScreen("Welcome to FLIPPED, press the button to start.", const.customFont(35), const.WHITE, const.WIDTH/2, 400)
+    util.toScreen("QUICK INSTRUCTIONS: press SPACE to contuine into levels", const.customFont(35), const.WHITE, const.WIDTH/2, 450)
 
