@@ -21,5 +21,5 @@ def playLevel(player):
 #    util.imageToScreen("assets\Backround floor2.jpg")
     for obstacle in obstacles:
         obstacle.display()
-    player.collisions(obstacle)
+    player.collisions(obstacles)
 
