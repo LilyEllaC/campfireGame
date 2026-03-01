@@ -17,10 +17,11 @@ def create_maze():
             obstacles.add(sprites.Hinder(x_Val,0, width, height, True,0))
         
         x_Val = x_Val +width
-#left
-y_Val = 2 
-for i in range(1, 10):
-    if i not in (5, 6):
+
+   #left
+    y_Val = 2 
+    for i in range(1, 10):
+        if i not in (5, 6):
          obstacles.add(sprites.Hinder(1, y_Val, width, height, True, 0))
     
     y_Val = y_Val + height
@@ -37,6 +38,8 @@ for i in range(1, 10):
              obstacles.add(sprites.Hinder(const.WIDTH - width, y_Val, width, height, True, 0))
     
         y_Val = y_Val + height
+
+
 #middle
     for i in (3,5,7,9):
         x_px = i * width
@@ -48,12 +51,16 @@ for i in range(1, 10):
            
            obstacles.add(sprites.Hinder(x_px, j *height, width, height, True, 0))
 
+
+
+door=sprites.Door(const.WIDTH//2-350, const.HEIGHT/2-50, 150, 300)
+create_maze()
 def playLevel(player):
 #     #music
 #     play.CurrentPage("other")
    #const.SCREEN.fill("assets\Backround floor2.jpg")
     util.imageToScreen("assets/Backround floor2.jpg", 0, 0,const.WIDTH, const.HEIGHT)
-    create_maze()
+    
 #    util.imageToScreen("assets\Backround floor2.jpg")
     for obstacle in obstacles:
         obstacle.display()

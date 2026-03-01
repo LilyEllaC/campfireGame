@@ -50,7 +50,7 @@ async def main():
             intro.playIntro()
         elif gameState=="playing":
             game.playGame()
-
+        util.toScreen("FPS: "+str(clock.get_fps()), const.FONT30,const.RED, 1000, 10)
         #end
         pygame.display.flip()
         await asyncio.sleep(0)
