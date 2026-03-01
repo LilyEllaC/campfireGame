@@ -31,14 +31,18 @@ def createObjects():
 
     door = sprites.Door(const.WIDTH - size, const.HEIGHT // 2, size, size*2)
 
-background="assets/backround floor2 dark.png"
+background="assets/Backround floor2.jpg"
 #new background
 def newBackground():
+    global background
     background="assets/backround floor2 dark.png"
+    for obstacle in obstacles:
+        obstacle.changeMode()
 
 createObjects()
 #level
 def playLevel(player):
+    global background
     util.imageToScreen(background, 0, 0,const.WIDTH, const.HEIGHT)
 #     util.imageToScreen("assets\Backround floor2.jpg",)
     for item in items:

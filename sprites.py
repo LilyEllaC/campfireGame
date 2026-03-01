@@ -123,13 +123,19 @@ class Hinder(pygame.sprite.Sprite):
             self.imageType=pygame.image.load("assets/replace.png")
             self.altImage=pygame.image.load("assets/replace.png")
         else: 
+            if image=="assets/door.png":
+                self.altImage=pygame.image.load("assets/table sprite dark.png")
+            else:
+                self.altImage=pygame.image.load(image)
             self.imageType=pygame.image.load(image)
-            self.altImage=pygame.image.load(image)
+            self.imageNum=0
+
+
         self.x = x
         self.y = y  
         self.width = width
         self.height = height
-        self.image = pygame.transform.scale(self.imageType, (width, height))
+        self.image = pygame.transform.scale(self.imageType, (self.width, self.height))
 
         self.rect = self.image.get_rect()
         pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
@@ -161,10 +167,12 @@ class Hinder(pygame.sprite.Sprite):
 
 
     def changeMode(self):
-        if self.image==pygame.transform.scale(self.imageType, (self.width, self.height)):
+        if self.imageNum==0:
             self.image=pygame.transform.scale(self.altImage, (self.width, self.height))
+            self.imageNum=1
         else:
             self.image=pygame.transform.scale(self.imageType, (self.width, self.height))
+            self.imageNum=0
 
     def move(self):
         if (self.moveDirect==1 and self.y>self.endPos) or (self.moveDirect==2 and self.y<self.endPos) or (self.moveDirect==3 and self.x>self.endPos) or (self.moveDirect==4 and self.x<self.endPos):
@@ -234,7 +242,6 @@ class Object(pygame.sprite.Sprite):
     
     def display(self):
         const.SCREEN.blit(self.image, (self.x, self.y))
-        pygame.draw.rect(const.SCREEN, const.BLACK, self.rect, 3)
 
 class Ghost(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
