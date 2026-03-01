@@ -62,7 +62,7 @@ def create_maze():
 
 # Initialize objects
 # door=sprites.Door(const.WIDTH//2-350, const.HEIGHT/2-50, 150, 300)
-
+key=sprites.Object(const.WIDTH-200, const.HEIGHT-170, 40, 40, "assets/key.png", 1)
 create_maze()
 
 def playLevel(player):
@@ -76,6 +76,11 @@ def playLevel(player):
     player.collisions(obstacles)
 
     player.display()
-    player.updateImage()    
+    player.updateImage()   
+    key.display()
+    key.collide(player) 
     #if door:
-    return door.collide(player, 1)
+    if key.y==30:
+        return door.collide(player,1)
+
+    return 1

@@ -27,7 +27,6 @@ timeLeft=90
 def playLevel(player):
     global timeLeft
     util.imageToScreen("assets/backround floor2 dark.png", 0, 0,const.WIDTH, const.HEIGHT)
-    util.toScreen("Level 3", const.FONT25, const.YELLOW, const.WIDTH-100, 30)
 
     #clock
     timeLeft-=1/const.FPS

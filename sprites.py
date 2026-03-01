@@ -211,6 +211,8 @@ class Door(pygame.sprite.Sprite):
     def collide(self, player, level):
         if self.rect.colliderect(player.rect):
             level+=1
+            player.x=20
+            player.y=const.HEIGHT/2
         return level
     
     def display(self):
