@@ -2,6 +2,8 @@ import constants as const
 import utility as util
 import pygame
 import sprites
+import playing_music as play
+
 
 obstacles = pygame.sprite.Group()
 items = pygame.sprite.Group()
@@ -13,23 +15,30 @@ def createObjects():
     
  
     # items
+    #x, y, width, height, image, position
     # Clock item Bottom middle)]
-    items.add(sprites.Object(const.WIDTH//2 - 20, const.HEIGHT - size*3, 40, 40, "assets/clock sprite (dark).png", 1))
-    # Tomato item Top right
-    items.add(sprites.Object(const.WIDTH - size*8, size * 2, 40, 40, "assets/tomato sprite dark.png", 2))
-    # Key item Bottom right 
-    items.add(sprites.Object(size * 16, const.HEIGHT - size*3, 40, 40, "assets/clock sprite (dark).png", 3)) 
-    
-    # Eyeball Top left 
-    items.add(sprites.Object(size * 2, size * 2, 40, 40, "assets/eyeball sprite (dark).png",4))
+    items.add(sprites.Object(500,700, size, size, "assets/clock sprite (dark).png", 1))
+    # Tomato item behind sofa
+    items.add(sprites.Object(const.WIDTH - size*8, size * 2, size, size, "assets/tomato sprite dark.png", 2))
+    # Key item behind table 
+    items.add(sprites.Object(1270,const.HEIGHT - size*3, size, size, "assets/key.png", 3)) 
+    # Eyeball Top left behind tall clock
+    items.add(sprites.Object(const.WIDTH//2-size*3, size*1, size, size, "assets/eyeball sprite (dark).png",4))
    
+   #move
+   #x, y, width, height, isPainful, moveDirection, image
    # Grandfather clock Top middle
-    obstacles.add(sprites.Hinder(const.WIDTH//2 - size//2, size * 2, size, size*4, False, 2, "assets/Object_grandfatherclock_sprite_(dark).png"))
+    obstacles.add(sprites.Hinder(const.WIDTH//2-size*4, size//2*1 , size*2, size*7, False, 2, "assets/Object_grandfatherclock_sprite_(dark).png"))
     # Chest/Drawers Bottom right
-    obstacles.add(sprites.Hinder(size * 15, const.HEIGHT - size*5, size*4, size*3, False, 4, "assets/table sprite dark.png"))
-    
+    obstacles.add(sprites.Hinder(1225, const.HEIGHT - size*5, size*6, size*6, False, 4, "assets/table sprite dark.png"))
+    #chair top right
+    obstacles.add(sprites.Hinder(1100,size, size*5, size*5, False, 3, "assets/couch (dark).png"))
+    #office table
+    obstacles.add(sprites.Hinder(300,600, size*5, size*5, False, 4, "assets/Computer (dark).png"))
 
-    door = sprites.Door(const.WIDTH - size, const.HEIGHT // 2, size, size*2)
+
+    
+door = sprites.Door(1395,size-35, 200, 300)
 
 background="assets/newLevel2Background1.png"
 #new background
@@ -47,17 +56,24 @@ def playLevel(player):
     global background
     util.imageToScreen(background, 0, 0,const.WIDTH, const.HEIGHT)
 #     util.imageToScreen("assets\Backround floor2.jpg",)
-    
+    door.display()
+
    
         
     if background =="assets/backround floor2 dark.png":
         for item in items:
             item.display()
             item.collide(player)
-
+            
     if background =="assets/backround floor2 dark.png":
        for obstacle in obstacles:
-           obstacle.display()
+            player.collisions(obstacles)
+            obstacle.display()
+            
+    for item in items:
+        if item.position == 30:
+                return door.collide(player, 2)
+
      
         
     

@@ -4,6 +4,7 @@ import constants as const
 import intro
 import game
 import level2
+import level1
 import ending
 import sprites
 import asyncio
